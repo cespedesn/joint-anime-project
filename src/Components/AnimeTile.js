@@ -1,7 +1,7 @@
 import React from 'react'
  function AnimeTile({ anime }) {
  const {title, image_url} = anime
- console.log(image_url);
+ console.log(anime.images.jpg.image_url);
   return (
     // <div>
     //   <div>
@@ -18,7 +18,7 @@ import React from 'react'
 				rel="noreferrer">
 				<figure>
 					<img 
-						src={image_url} alt="Anime"/>
+						src={anime.images.jpg.image_url} alt="Anime"/>
 				</figure>
 				<h5>{title}</h5>
 			</a>

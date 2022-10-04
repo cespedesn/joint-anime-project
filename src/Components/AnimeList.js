@@ -11,7 +11,7 @@ import AnimeTile from './AnimeTile'
         )
     } )
   return (
-    <div>
+    <div className='grid'>
     {topAnimes}
     </div>
   )

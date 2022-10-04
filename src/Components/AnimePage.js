@@ -14,7 +14,7 @@ function AnimePage() {
     fetch (`https://api.jikan.moe/v4/top/anime`)
     .then(res => res.json())
     .then(data => {
-      setAnimeList(data.data.slice(0,5));
+      setAnimeList(data.data.slice(0,8));
         
     })
   }, [])
@@ -29,8 +29,10 @@ function AnimePage() {
      setAnimeList={setAnimeList}/>
      <SideBar />
      <SearchBar />
-     <AnimeList animeList={animeList} />
-     <MangaList mangaList={mangaList} setMangaList={setMangaList}/>
+     <div>
+      <AnimeList animeList={animeList} />
+      <MangaList mangaList={mangaList} setMangaList={setMangaList}/>
+     </div>
    </div>
   )
 }
