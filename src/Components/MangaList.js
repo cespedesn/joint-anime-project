@@ -7,7 +7,7 @@ const topMangaList =
     fetch(`https://api.jikan.moe/v4/top/manga`)
     .then(res => res.json())
     .then(data => {
-        setMangaList(data.data.slice(0,5));
+        setMangaList(data.data.slice(0,8));
         
     })
     const topManga = mangaList.map((manga) => {
@@ -21,7 +21,7 @@ const topMangaList =
     console.log(topManga);
   return (
    
-    <div>{topManga}</div>
+    <div className='grid'>{topManga}</div>
   )
 }
 export default MangaList;
