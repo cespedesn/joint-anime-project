@@ -1,17 +1,25 @@
-import React from 'react'
+import React from 'react';
+
 
 function MangaTile({manga}) {
     const {title} = manga
+
   return (
-    <div>
-        <div>
-            <img src={manga.images.jpg.image_url} alt={title} />
-        </div>
-        <div>
-            <h5>{title}</h5>
-            
-        </div>
-    </div>
+
+    <article className="anime-card">
+      <a
+        href={manga.url}
+        target='_blank' 
+        rel="noreferrer">
+          <figure>
+              <img 
+              className='manga-image'
+              src={manga.images.jpg.image_url} alt={title}/>
+          </figure>
+          <h4>{title}</h4>
+      </a>
+    </article>
   )
 }
 export default MangaTile;
+

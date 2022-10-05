@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(to right, #2c5364, #203a43);
+  background: linear-gradient(to right, #7d568b, #2b1135);
 }
 
 code {
@@ -34,10 +34,11 @@ code {
   margin-left: 15px;
 }
 
-.show-btn {
+.show-btn > button{
   margin-top: 15px;
   margin-left: 15px;
 }
+
 
 .sidebar-parent {
   display: inline-flex;
@@ -45,18 +46,22 @@ code {
   width: 20%;
   border: solid 5px;
   
-
 }
 
 .sidebar-child {
   display: inline-block;
   width: 100%;
   border: dotted 5px;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  align-items: flex-start;
 }
 
 .searchbar {
   float: right;
   margin-right: 15px;
+  margin-bottom: 10px;
+  border-radius: 10%;
   display: flex;
   justify-content: flex-end;
   flex: 1 1 0%;
@@ -68,8 +73,47 @@ code {
 
 }
 
+.header {
+  text-align: center;;
+}
+
+
+.grid-container {
+  padding: 5%;
+}
+
 .grid{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   width: 100%;
+  text-align: center;
+  
+  
+}
+
+
+.tile-image {
+  border-radius: 10%;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  transform-origin: bottom;
+}
+
+.manga-image {
+  border-radius: 10%;
+}
+
+.tile-image:hover {
+  animation-name: bounce;
+  animation-timing-function:ease-in-out;
+}
+
+.animelist-component {
+  border: solid 5px;
+  
+}
+
+.mangalist-component {
+  border: solid 5px;
+  
 }
