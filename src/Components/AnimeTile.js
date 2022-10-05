@@ -1,31 +1,25 @@
 import React from 'react'
- function AnimeTile({ anime }) {
- const {title, image_url} = anime
- console.log(anime.images.jpg.image_url);
+import AnimeSearchBar from './AnimeSearchBar'
+
+
+ function AnimeTile({anime}) {
+ const {title} = anime
+ 
   return (
-    // <div>
-    //   <div>
-    //    <img src={image} alt={title} />
-    //   </div>
-    //   <div>
-    //    <h2>{title}</h2>
-    //    <p>{bookmark}</p>
-    //   </div>
-    // </div>
+
     <article className="anime-card">
 			<a 
 				href={anime.url}  
+        target='_blank' 
 				rel="noreferrer">
 				<figure>
 					<img 
-						src={anime.images.jpg.image_url} alt="Anime"/>
+            className='tile-image'
+						src={anime.images.jpg.image_url} alt={title}/>
 				</figure>
-				<h5>{title}</h5>
+				<h4>{title}</h4>
 			</a>
 		</article>
-
-
-
   )
 }
 export default AnimeTile

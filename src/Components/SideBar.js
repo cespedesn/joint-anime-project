@@ -1,14 +1,25 @@
-import React from 'react'
+import React from 'react';
+
+
 
 function SideBar() {
   return (
-    <span className='sidebar-parent'>
-      <span className='sidebar-child'>
-        SideBar
-      </span>
+    <div>
+      <div className='sideBar'>
+        <nav>
+          <h4>Home</h4>
+          <h4>Anime</h4>
+          <h4>Manga</h4>
+          <h4>Bookmark</h4>
+        </nav>
+      </div>
+    </div>
+      
 
-    </span>
+    
   )
 }
 
 export default SideBar;
+
+ 

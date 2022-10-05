@@ -9,7 +9,8 @@ import Form from './Form'
   return (
     <div className='header'>
       <header>
-      <button className = "show-btn" onClick={handleHide}>Show Manga/ Anime Form</button>
+      <button className = "show-btn" 
+      onClick={handleHide}>Show Manga/ Anime Form</button>
         {hideForm ?
         <Form
         animeList={animeList}
@@ -21,3 +22,4 @@ import Form from './Form'
   )
 }
 export default Header;
+    
