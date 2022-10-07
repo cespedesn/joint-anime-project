@@ -1,5 +1,5 @@
 import React from 'react'
-import AnimeSearchBar from './AnimeSearchBar'
+
 
 
  function AnimeTile({anime}) {

@@ -5,7 +5,11 @@ import AnimeSearchBar from './AnimeSearchBar'
 import MangaSearchBar from './MangaSearchBar';
 import MangaList from './MangaList';
 import SideBar from './SideBar';
+import Footer from './Footer';
+import Bookmark from './Bookmark';
+import { Link } from "react-router-dom"
 import { FaBars } from 'react-icons/fa';
+
 
 
 function AnimePage({isOpen, setIsOpen}) {
@@ -13,6 +17,8 @@ function AnimePage({isOpen, setIsOpen}) {
   const [searchTerm, setSearchTerm] = useState('')
   const [mangaList, setMangaList] = useState([]);
   const [mangaSearchTerm, setMangaSearchTerm] = useState('');
+  const [recommendations, setRecommendations] = useState([]);
+  const [showRecommendations, setShowRecommendations] = useState(false)
   
   
 
@@ -20,7 +26,7 @@ function AnimePage({isOpen, setIsOpen}) {
     fetch (`https://api.jikan.moe/v4/top/anime?limit=8`)
     .then(res => res.json())
     .then(data => {
-      setAnimeList(data.data.slice(0,8));
+      setAnimeList(data.data?.slice(0,8));
         
     })
   }, [])
@@ -30,22 +36,24 @@ function AnimePage({isOpen, setIsOpen}) {
         setHideSideBar(hideSideBar => !hideSideBar);
       }
   const animeToDisplay =
-  animeList.filter(anime => anime.title.toLowerCase().includes(searchTerm.toLowerCase()))
+  animeList?.filter(anime => anime.title.toLowerCase().includes(searchTerm.toLowerCase()))
 
   const mangaToDisplay =
-  mangaList.filter(manga => manga.title.toLowerCase().includes(mangaSearchTerm.toLowerCase()))
+  mangaList?.filter(manga => manga.title.toLowerCase().includes(mangaSearchTerm.toLowerCase()))
   
-
+  const handleRecommend = () => {
+    setShowRecommendations(showRecommendations => !showRecommendations)
+   }
 
   return (
    <div>
-     <Header 
-     animeList={animeList} 
-     setAnimeList={setAnimeList}/>
+    
+     {/* <Header 
+      animeList={animeList} 
+      setAnimeList={setAnimeList}/> */}
      <aside className='sidebar-parent'>
       <aside className='sidebar-child'>
-          <buton className = "sidebar-btn" 
-            onClick ={handleHideSideBar}> Nav </buton>  
+      
             {hideSideBar ? 
             <SideBar 
             hideSideBar={hideSideBar}
@@ -59,14 +67,10 @@ function AnimePage({isOpen, setIsOpen}) {
           setAnimeList={setAnimeList}
           searchTerm={searchTerm}
           setSearchTerm={setSearchTerm} />
-          </div>
-          <div></div>
           <AnimeList 
           animeList={animeToDisplay} 
           isOpen={isOpen} 
           setIsOpen={setIsOpen}/>
-          <div>
-          
       </div>
         <div className='mangalist-component'>
           <div> 
@@ -75,6 +79,8 @@ function AnimePage({isOpen, setIsOpen}) {
               mangaSearchTerm={mangaSearchTerm}
               setMangaSearchTerm={setMangaSearchTerm} 
               />
+            
+            
           </div>
             <MangaList 
             mangaList={mangaToDisplay} 
@@ -82,8 +88,20 @@ function AnimePage({isOpen, setIsOpen}) {
             isOpen={isOpen} 
             setIsOpen={setIsOpen}/>
         </div>
+        <div className='button-div'>
+        <button className = "footer-btn" 
+            onClick ={handleRecommend}> Recommendations
+               </button>  
+            {showRecommendations ? 
+            <Footer 
+            handlRecommend={handleRecommend}
+            recommendations={recommendations} 
+            setRecommendations={setRecommendations}
+            /> : null}
+        </div>
      </div>
    </div>
   )
 }
 export default AnimePage;
+
