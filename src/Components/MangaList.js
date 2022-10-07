@@ -10,7 +10,7 @@ const topMangaList =
         setMangaList(data.data.slice(0,8));
         
     })
-    const topManga = mangaList.map((manga) => {
+    const topManga = mangaList?.map((manga) => {
         return (
             <MangaTile 
                 key={manga.mal_id}
@@ -23,7 +23,7 @@ const topMangaList =
     
   return (
     <div className='grid-container'>
-        <div className='header'><h1>Manga</h1></div>
+        <div className='header'><h1 className='h1'>Manga</h1></div>
         <div className='grid'>
             {topManga}
         </div>

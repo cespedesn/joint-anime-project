@@ -17,7 +17,7 @@ import AnimeTile from './AnimeTile'
       
   return (
     <div className='grid-container'>
-      <div className='header'><h1>Anime</h1></div>
+      <div className='header'><h1 className='h1'>Anime</h1></div>
       <div className='grid'>
         {topAnimes}
       </div>

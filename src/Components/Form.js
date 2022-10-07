@@ -1,93 +1,95 @@
 import React, {useState} from 'react';
 import { motion } from "framer-motion";
-
- function Form({ animeList, setAnimeList }) {
-  const onAddAnime = (newAnime) => {
-    setAnimeList([...animeList, newAnime])
-  }
-   const [newItem, setNewItem] = useState({
+import { useNavigate } from "react-router-dom";
+ function Form() {
+  const navigate = useNavigate();
+  const [newItem, setNewItem] = useState({
       title: "",
       bookmark: "",
+      website: "",
       image: "",
-      anime: false ? false : true,
-      manga: false ? false : true
+      anime: false,
+      manga: false
    })
-   function handleChange(e){
+   function handleChange(e) {
+    const value = e.target.type === "radio" ? e.target.checked : e.target.value
+    const key = e.target.type === "radio" ? e.target.id : e.target.name
+    console.log(key, value)
     setNewItem({
-       ...newItem,
-       [e.target.name]: e.target.value
-   });
-  }
+      ...newItem,
+      [key]: value
+    })
+   }
   function handleSubmit(e){
-    e.preventDefault();
-    const newAnimeAdded = {
-      title: newItem.title,
-      bookmark: newItem.bookmark,
-      image: newItem.image,
-      anime: newItem.anime,
-      manga: newItem.manga
+    e.preventDefault()
+    if(newItem.title === "" || newItem.website === "" ||
+    newItem.bookmark === "" || newItem.image === ""
+    ){
+      return alert("No fields can be blank")
     }
-    fetch("http://localhost:3000/animes",{
-      method: 'POST',
+    fetch("http://localhost:3000/item", {
+      method: "POST",
       headers: {
-        "Content-Type": "application/jsonn",
-      },
-      body: JSON.stringify(newAnimeAdded)
-    })
-    .then((res) => res.json())
-    .then((data) => {
-      onAddAnime(data)
-        setNewItem({
-          title: '',
-          bookmark: '',
-          image: '',
-        })
-    })
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify(newItem)
+  })
+   navigate("/")
   }
   return (
-    <aside>
-      <motion.div className="form">
-        <form onSubmit={handleSubmit} className="new-poem-form">
+      <div className="form">
+        <form onSubmit={handleSubmit} className="form-form">
         <input
         placeholder="Title"
         name="title"
+        value={newItem.title}
         onChange={handleChange}
+        className="form-form"
         />
         <input
         placeholder="Chapter/Episode"
         name="bookmark"
+        value={newItem.bookmark}
         onChange={handleChange}
+        className="form-form"
+        />
+        <input
+        placeholder="Viewing Source"
+        name="website"
+        value={newItem.website}
+        onChange={handleChange}
+        className="form-form"
         />
         <input
         placeholder="Img Url"
         name="image"
+        value={newItem.image}
         onChange={handleChange}
+        className="form-form"
         />
         <br />
-        <input
-        type="checkbox"
-        name="anime"
-        value="false"
-        onChange={handleChange}
-        />
-        <label for="Anime">Anime</label>
+        <input type="radio"
+        checked={newItem.manga}
+        value={newItem.manga}
+        className="form-form"
+        id="manga"
+        onChange={handleChange} name="type" />
+        <label for="manga">Manga</label>
+        <input type="radio"
+        value={newItem.anime}
+        className="form-form"
+        id="anime"
+        checked={newItem.anime}
+        onChange={handleChange} name="type" />
+        <label for="anime">Anime</label>
         <br />
         <input
-        type="checkbox"
-        name="manga"
-        value="false"
-        onChange={handleChange}
-        />
-        <label 
-        className= "label" 
-        for="Manga">Manga</label>
-        <br />
-        <input
+        className='form-btn'
         type="submit"
         />
         </form>
-      </motion.div>
-    </aside>
+      </div>
+      
   )
 }
 export default Form;
