@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/joint-anime-project/static/css/main.35a88975.css",
+    "main.js": "/joint-anime-project/static/js/main.12ff6db6.js",
+    "index.html": "/joint-anime-project/index.html",
+    "main.35a88975.css.map": "/joint-anime-project/static/css/main.35a88975.css.map",
+    "main.12ff6db6.js.map": "/joint-anime-project/static/js/main.12ff6db6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.35a88975.css",
+    "static/js/main.12ff6db6.js"
+  ]
+}
